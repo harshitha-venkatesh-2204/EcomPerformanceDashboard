@@ -8,6 +8,7 @@ import OrdersWidget from './OrdersWidget';
 import ScatterPlot from './ScatterPlot';
 import FunnelChart from './FunnelChart';
 import LeastProducts from './LeastProducts';
+import BarChartWithDropdown from './BarChartDropDown'
 
 
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
             <div className="col-sm-6 col-lg-3">
               <RevenueWidget/>
             </div>
-            <div className="col-sm-6 col-lg-3">
+            {/* <div className="col-sm-6 col-lg-3">
               <SalesWidget/>
             </div>
             <div className="col-sm-6 col-lg-3">
@@ -42,7 +43,7 @@ function Home() {
             </div>
             <div className="col-sm-6 col-lg-3">
              <OrdersWidget/>
-            </div>
+            </div> */}
             <div className="col-lg-12">
               <div className="card">
                 <div className="card-body">
@@ -77,7 +78,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6">
+            {/* <div className="col-lg-6">
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">What are the least selling products?</h3>
@@ -90,13 +91,13 @@ function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="col-12">
               <div className="card">
                 <div className="card-body border-bottom py-3">
                 <h3 className="card-title">What is the sales across different regions?</h3>
                 <div className="w-100 h-100">
-                        <SalesTreemap/>
+                        <BarChartWithDropdown/>
                       </div>
                 </div>
               </div>
