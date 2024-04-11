@@ -18,7 +18,7 @@ interface AverageDeliveryDelayPerCategoryResponse {
 
 class API{
 
-    private API_URL = "https://26af-174-181-62-6.ngrok-free.app" 
+    private API_URL = "http://localhost:5000" 
     constructor(){
     }
     get_total_sales_per_category({all=false}:any={}){
