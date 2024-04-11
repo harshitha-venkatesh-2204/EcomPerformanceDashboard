@@ -1,33 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import api from '../Api.ts'
+// import * as _ from 'lodash';
 
 const StackedBarChart = () => {
-  const options = {
-    series: [
-      {
-        name: 'PRODUCT A',
-        data: [44, 55, 41, 67, 22, 43, 21, 49]
-      },
-      {
-        name: 'PRODUCT B',
-        data: [13, 23, 20, 8, 13, 27, 33, 12]
-      },
-      {
-        name: 'PRODUCT C',
-        data: [11, 17, 15, 15, 21, 14, 15, 13]
+  console.log("bars");
+  const [series_data, setSeriesData] = useState([])
+  const [categoriesData, setCategoriesData] = useState([])
+
+  useEffect(()=> {
+
+    api.get_total_sales_per_category().then((data) => {
+      let categories = [];
+      let graphData = [];
+      for(let item of data.data){
+          
+        categories.push(item.product_category_name.split("_").join(" "))
+        graphData.push(item.total_sales)
+
       }
-    ],
+
+      // console.log(finalData)
+      console.log(categories)
+      setSeriesData([{
+        "name": "Test",
+        "data": graphData
+      }]);
+      setCategoriesData(categories);
+    })
+
+  }, [])
+  
+  const options = {
     chart: {
       type: 'bar',
       height: 350,
-      stacked: true,
-      stackType: '100%',
+      width: 1000,
       toolbar: {
         show: false // This will hide the toolbar including the download button
       }
     },
     xaxis: {
-      categories: ['2011 Q1', '2011 Q2', '2011 Q3', '2011 Q4', '2012 Q1', '2012 Q2', '2012 Q3', '2012 Q4']
+      categories: categoriesData
     },
     fill: {
       opacity: 1
@@ -46,13 +60,40 @@ const StackedBarChart = () => {
     },
     dataLabels: {
       enabled: false // This will hide the data labels (percentages)
-    }
+    },
+    plotOptions:{
+      bar:{
+        horizontal: false,
+        borderRadius: 0,
+        borderRadiusApplication: 'around',
+        borderRadiusWhenStacked: 'last',
+        columnWidth: '80%',
+        barHeight: '70%',
+        distributed: false,
+        rangeBarOverlap: true,
+        rangeBarGroupRows: false,
+        hideZeroBarsWhenGrouped: false,
+        isDumbbell: false,
+        dumbbellColors: undefined,
+        isFunnel: false,
+        isFunnel3d: true,
+        colors: {
+            ranges: [{
+                from: 0,
+                to: 0,
+                color: undefined
+            }],
+            backgroundBarColors: [],
+            backgroundBarOpacity: 1,
+            backgroundBarRadius: 0,
+        }
+    }}
   
   };
 
   return (
     <div>
-      <ReactApexChart options={options} series={options.series} type="bar" height={350} />
+      <ReactApexChart options={options} series={series_data} type="bar" height={350} />
     </div>
   );
 };

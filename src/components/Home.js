@@ -43,7 +43,7 @@ function Home() {
             <div className="col-sm-6 col-lg-3">
              <OrdersWidget/>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-12">
               <div className="card">
                 <div className="card-body">
                   <h3 className="card-title">What is the total sales by product category?</h3>
