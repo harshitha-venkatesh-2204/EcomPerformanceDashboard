@@ -72,7 +72,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 =======
 # EcomPerformanceDashboard
 
-To start react app
-cd AnalyticsDashboard\insightsdashboard
-npm start
->>>>>>> b9c903f2eac73c8f1dbd0d98215f63c28e254e7e
+## To start react app
+
+- cd AnalyticsDashboard\insightsdashboard
+- npm start
+
